@@ -1,14 +1,11 @@
 import tkinter as tk
 from deepl import Translator, DocumentTranslationException, DeepLException
 from datetime import datetime
-from search import search
+from search import search, pdfs
 from logging import basicConfig, getLogger, DEBUG
 flag = 1
 # Initialize translator
 translator = Translator("4ec2251b-bd81-4a7a-bcd4-cb9366d4e0bb:fx")
-after_var = tk.StringVar()
-during_var = tk.StringVar()
-input_var = tk.StringVar()
 
 
 def logger():
@@ -18,30 +15,30 @@ def logger():
 
 def translate():
     global after_var, during_var, input_var
+    for pdf in PDFs:
+        try:
+            logger()
+            translator.translate_document_from_filepath(input_path=pdf, output_path="Done\\",
+                                                        target_lang="HU", formality="more")
 
-    try:
-        logger()
-        translator.translate_document_from_filepath(input_path=search(input_var), output_path="Done\\",
-                                                    target_lang="HU", formality="more")
+        except DocumentTranslationException as error:
+            doc_id = error.document_handle.document_id
+            doc_key = error.document_handle.document_key
+            after_var.set(f"Hiba történt feltöltés UTÁN: {error}, id: {doc_id}, key: {doc_key}")
 
-    except DocumentTranslationException as error:
-        doc_id = error.document_handle.document_id
-        doc_key = error.document_handle.document_key
-        after_var.set(f"Hiba történt feltöltés UTÁN: {error}, id: {doc_id}, key: {doc_key}")
+            print(after_var.get())
+            logs = open("error_logs.txt", "a")
+            print(f"{after_var}\t{datetime}", file=logs)
+            logs.close()
 
-        print(after_var.get())
-        logs = open("error_logs.txt", "a")
-        print(f"{after_var}\t{datetime}", file=logs)
-        logs.close()
+        except DeepLException as error:
+            during_var.set(f"Hiba történt feltöltés KÖZBEN: {error}")
+            print(during_var.get())
 
-    except DeepLException as error:
-        during_var.set(f"Hiba történt feltöltés KÖZBEN: {error}")
-        print(during_var.get())
+            logs = open("error_logs.txt", "a")
 
-        logs = open("error_logs.txt", "a")
-
-        print(f"{during_var}\t{datetime}", file=logs)
-        logs.close()
+            print(f"{during_var}\t{datetime}", file=logs)
+            logs.close()
 
 
 def screen_size(parameter):
@@ -58,44 +55,26 @@ def screen_size(parameter):
         root.destroy()
         return height
 
+
 # Create main window
 window = tk.Tk()
 window.title("DeepL Translator")
-window.geometry(f"{screen_size("w")//2}x{screen_size("h")//2}")
+window.geometry(f"{screen_size("w")//2}x{screen_size("h")//4}")
 
 # Input path
-print(flag)
-input_label = tk.Label(window, text="Fordítandó PDF-ek teljes neve:" if flag == 1 else "Fordítandó PDF teljes neve:")
+input_verification_label = tk.Label(window, text="Pontos vesszővel válaszd el a neveket", font=("ariel", 13))
+
+input_label = tk.Label(window, text="Fordítandó PDF-ek teljes neve:", font=("ariel", 13))
 input_label.pack()
+
 input_var = tk.StringVar()
-input_entry = tk.Entry(window, textvariable=input_var)
+input_entry = tk.Entry(window, textvariable=input_var, width=(screen_size("w")//20), font=("airel", 12))
 input_entry.pack()
-
-def update():
-    global input_label
-    if check_box_status.get():
-        text = "Fordítandó PDF-ek teljes neve:"
-
-    else:
-        text = "Fordítandó PDF teljes neve:"
-
-    window.mainloop()
-    input_label = tk.Label(window, text=text)
-
-check_box_status = tk.IntVar(value=1)
-check_box = tk.Checkbutton(window, text="Több PDF fordítása", variable=check_box_status,
-                               onvalue=1, offvalue=0, command=update)
-check_box.pack()
-
-# Output path
-output_label = tk.Label(window, text="Kimeneti file:")
-output_label.pack()
-output_var = tk.StringVar()
-output_entry = tk.Entry(window, textvariable=output_var)
-output_entry.pack()
+input_verification_label.pack()
 
 # Translate button
-translate_button = tk.Button(window, text="Küldés", command=translate)
+translate_button = tk.Button(window, text="Küldés", font=("airel", 14), command=pdfs(input_var),
+                             height=screen_size("w")//350, width=screen_size("w")//200)
 translate_button.pack()
 
 # Error display (after)
