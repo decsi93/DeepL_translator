@@ -1,25 +1,30 @@
-import tkinter as tk
-window = tk.Tk()
-check_box_status = tk.IntVar(value=1)
-# cb = ""
-flag = 1
+from reportlab.pdfgen import canvas
 
 
-def status():
-    global check_box_status, flag  # Make sure the flag variable is also global
+def create_empty_pdf(filename, num_pages=1):
+    """
+    Creates a new PDF document with the specified filename and number of pages.
 
-    check_box_status = tk.IntVar()
-    check_box_status.set(1)
-    # Create a checkbox widget and link it to the check_box_status variable
-    checkbox = tk.Checkbutton(window, text="Check me", variable=check_box_status)
-    checkbox.pack()
+    Args:
+        filename (str): The name of the PDF file to create.
+        num_pages (int, optional): The number of empty pages to include in the PDF. Defaults to 1.
+    """
 
-    # Bind a function to the checkbox "command" to update the flag
-    def update_flag():
-        global flag  # Access the global flag variable
-        flag = check_box_status.get()  # Get the current checkbox state (0 or 1)
+    # Create a new PDF document
+    if not filename.endswith(".pdf"):
+        filename += ".pdf"
 
-    checkbox.config(command=update_flag)
+    c = canvas.Canvas(filename)
 
+    # Add empty pages (if more than one)
+    if num_pages > 1:
+        for _ in range(1, num_pages):
+            c.showPage()
 
-window.mainloop()
+    # Save the PDF
+    c.save()
+"""
+
+for i in range(20):
+    create_empty_pdf(filename=f"{i+1}", num_pages=1)
+"""
