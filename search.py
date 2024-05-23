@@ -1,4 +1,8 @@
 from os import listdir, path, getcwd
+from pymupdf import open as pdf_open
+from subprocess import run
+from platform import system
+from time import sleep
 
 
 def remove_trailing_semicolon(string_list):
@@ -69,18 +73,46 @@ def search(search_keys: list):
         Returns:
             A list of full paths to matching PDF files.
     """
-    paths = []
-    source_pdfs = listdir("Raw\\")  # Get all file names from the "Raw\" directory
+    results = []
+    source_pdfs = [f for f in listdir("Raw\\") if f.endswith(".pdf")]  # Get only PDF files
+
     for search_key in search_keys:
         for file_name in source_pdfs:
-            if search_key == file_name:  # Check if the search key matches the filename
-                paths.append(path.join(getcwd() + "\\Raw\\", file_name))  # Build the full path
-    return paths
+            if search_key in file_name:  # Check if search key is in the filename
+                full_path = path.join(getcwd() + "\\Raw\\", file_name)
+                found_in_done = search_key in listdir("Done\\")  # Check if exists in "Done\\"
+                results.append(found_in_done)  # Append tuple with path and flag
+                results.append(full_path)
+
+    return results
+
+
+def watermarking(pdf, watermark="watermark.png"):
+    file = pdf_open(path.join(getcwd() + "\\.In_progress\\" + pdf))  # open a document
+
+    for page_index in range(len(file)):  # iterate over pdf pages
+        page = file[page_index]  # get the page
+        # insert an image watermark from a file name to fit the page bounds
+        page.insert_image(page.bound(), filename=watermark, overlay=True)
+
+    file.save(path.join(getcwd() + "\\Done\\" + pdf))  # save the document with a new filename
+    sleep(5)
+    finished = path.join(getcwd() + "\\.In_progress\\" + pdf)
+    remove_finished_temps(finished)
+
+
+def remove_finished_temps(file_path):
+    if system() == "Windows":
+        run(['del', file_path], shell=True, check=True)
+    else:
+        run(['rm', file_path], check=True)
 
 
 """
 test_files = 1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20; 
-# test_files = "1.pdf;2.pdf;3.pdf;5.pdf;6.pdf;7.pdf;9.pdf;10.pdf;11.pdf;12.pdf;13.pdf;14.pdf;15.pdf;16.pdf;17.pdf;18.pdf;19.pdf;20.pdf;"
+test_files = "1.pdf;2.pdf;3.pdf;5.pdf;6.pdf;7.pdf;9.pdf;10.pdf
+;11.pdf;12.pdf;13.pdf;14.pdf;15.pdf;16.pdf;17.pdf;18.pdf;19.pdf;20.pdf;"
+
 test_files = "a;b;c;d;e;f;g;"
 print(pdfs(test_files))
 """

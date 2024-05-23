@@ -3,8 +3,12 @@ from time import sleep
 from datetime import datetime
 from logging import basicConfig, getLogger, DEBUG
 from deepl import Translator, DocumentTranslationException, DeepLException
-from os import path, getcwd
-from search import search, pdfs
+from os import path, getcwd, listdir
+from search import search, pdfs, watermarking
+from threading import Thread
+
+flag = False
+
 
 # Initialize translator
 translator = Translator("4ec2251b-bd81-4a7a-bcd4-cb9366d4e0bb:fx")
@@ -18,40 +22,68 @@ def logger():
 
 
 def translate():
-    """
-        Attempts to translate the provided PDF paths using the DeepL API.
+    def task():
+        """
+            Attempts to translate the provided PDF paths using the DeepL API.
 
-        Handles DocumentTranslationException and DeepLException errors and logs them with timestamps.
-    """
-    global after_var, during_var, input_var
-    try:
-        logger()
-        # Get the list of PDF paths from the search function (assuming it returns a list)
-        paths = search(pdfs(input_var.get()))
-        print(paths)
-        for file_path in paths:
-            finished = path.join(getcwd() + "\\Done\\HU_" + path.basename(file_path))
+            Handles DocumentTranslationException and DeepLException errors and logs them with timestamps.
+        """
+        global after_var, during_var, input_var, flag
+        flag = True
 
-            sleep(1.5)
+        try:
+            logger()
+            # Get the list of PDF paths from the search function (assuming it returns a list)
+            paths = search(pdfs(input_var.get()))
+            for i in range(len(paths) - 1):
+                if type(paths) is bool:
+                    if not paths[i]:
+                        finished = path.join(getcwd() + "\\.In_progress\\HU_" + path.basename(paths[i + 1]))
 
-            translator.translate_document_from_filepath(input_path=file_path, output_path=finished,
-                                                        target_lang="HU", formality="more")
+                        sleep(1.5)
 
-    except DocumentTranslationException as error:
+                        translator.translate_document_from_filepath(input_path=paths[i + 1], output_path=finished,
+                                                                    target_lang="HU")
+
+                        processing = listdir(".In_progress\\")
+                        for item in processing:
+                            watermarking(item)
+
+                    else:
+                        tk.Label(window, text=f"Ez a dokumentum ({path.basename(paths[i + 1])}) már létezik!",
+                                 font=("ariel", 13, "RED")).pack()
+
+        except DocumentTranslationException as error:
+            handle_errors(error, "UTÁN")
+
+        except DeepLException as error:
+            handle_errors(error, "KÖZBEN")
+
+    translation_thread = Thread(target=task)
+    translation_thread.start()
+    status_thread = Thread(target=update_status())
+    status_thread.start()
+
+
+def handle_errors(error, when):
+    global flag
+    flag = False
+    if when == "UTÁN":
         doc_id = error.document_handle.document_id
         doc_key = error.document_handle.document_key
         after_var.set(f"Hiba történt feltöltés UTÁN: {error}, id: {doc_id}, key: {doc_key}")
-
-        print(after_var.get())
+        after = after_var.get()
+        print(after)
         logs = open("error_logs.txt", "a")
-        print(f"{after_var.get()}\t{datetime}", file=logs)  # Use datetime.now() for current time
+        print(f"{after}\t{datetime.now()}", file=logs)  # Use datetime.now() for current time
         logs.close()
 
-    except DeepLException as error:
+    elif when == "KÖZBEN":
         during_var.set(f"Hiba történt feltöltés KÖZBEN: {error}")
-        print(during_var.get())
+        during = during_var.get()
+        print(during)
         logs = open("error_logs.txt", "a")
-        print(f"{during_var}\t{datetime}", file=logs)
+        print(f"{during}\t{datetime.now()}", file=logs)
         logs.close()
 
 
@@ -78,6 +110,8 @@ def screen_size(parameter):
         root.destroy()
         return height
 
+    root.destroy()
+
 
 # Create main window
 window = tk.Tk()
@@ -85,33 +119,51 @@ window.title("DeepL Translator")
 window.geometry(f"{screen_size("w")//2}x{screen_size("h")//4}")  # Use integer division for window size
 
 # Input path section with labels and entry field
-input_verification_label = tk.Label(window, text="Pontos vesszővel válaszd el a neveket", font=("ariel", 13))
+tk.Label(window, text="Pontos vesszővel válaszd el a neveket", font=("ariel", 13)).pack()
 
-input_label = tk.Label(window, text="Fordítandó PDF-ek teljes neve:", font=("ariel", 13))
-input_label.pack()
+tk.Label(window, text="Fordítandó PDF-ek teljes neve:", font=("ariel", 13)).pack()
 
 input_var = tk.StringVar()
-input_entry = tk.Entry(window, textvariable=input_var, width=(screen_size("w")//20), font=("airel", 12))
-input_entry.pack()
-input_verification_label.pack()
+tk.Entry(window, textvariable=input_var, width=(screen_size("w")//20), font=("airel", 12)).pack()
 
 # Translate button
-translate_button = tk.Button(window, text="Küldés", font=("airel", 14), command=translate,
-                             height=screen_size("w")//350, width=screen_size("w")//200)
-translate_button.pack()
+tk.Button(window, text="Küldés", font=("airel", 14), command=translate, height=screen_size("w")//350,
+          width=screen_size("w")//200).pack()
+
 
 # Error display (after)
 after_var = tk.StringVar()
-after_label = tk.Label(window, textvariable=after_var)
-after_label.pack()
+tk.Label(window, textvariable=after_var).pack()
 
 # Error display (during)
 during_var = tk.StringVar()
-during_label = tk.Label(window, textvariable=during_var)
-during_label.pack()
+tk.Label(window, textvariable=during_var).pack()
 
 
-# paths = search(pdfs(input_var.get()))
+class MockDocumentStatus:
+    done = False
+    seconds_remaining = 120
+
+
+DocumentStatus = MockDocumentStatus
+
+
+def update_status():
+    global flag
+    while flag:
+        sleep(2)
+        if not DocumentStatus.done:
+            msg = f"{DocumentStatus.seconds_remaining} másodperc van hátra"
+            doc_status.set(msg)
+            DocumentStatus.seconds_remaining -= 2
+            if DocumentStatus.seconds_remaining <= 0:
+                DocumentStatus.done = True
+        if not flag:
+            break
+
+
+doc_status = tk.StringVar()
+tk.Label(window, textvariable=doc_status).pack()
 
 
 # Run the main event loop
