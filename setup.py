@@ -30,3 +30,9 @@ def set_hidden_attribute(folder_path):
 
 for file_path in directories:
     check_prep(file_path)
+
+
+""""
+SW: 2.0.32
+IP: 172.28.21.119
+"""

@@ -2,7 +2,21 @@ from os import path, getcwd
 import pymupdf
 import os
 import ctypes
-import tqdm
+from tqdm.tk import tqdm
+from tkinter import filedialog as fd
+
+
+def open_text_file():
+    # Specify the file types
+    filetypes = (('documents', '.DOCX', '.PPTX', '.XLSX', '.PDF', '.HTML', '.TXT', '.STR'), ('All files', '*.*'))
+
+    # Show the open file dialog by specifying path
+    f = fd.askopenfile(filetypes=filetypes,
+                       initialdir="Raw\\")
+
+
+for i in tqdm(range(int(10e8)), total=int(10e8), unit="%"):
+    pass
 
 
 def check_prep(path):
@@ -59,3 +73,28 @@ def create_empty_pdf(filename, num_pages=2):
 for i in range(20):
     create_empty_pdf(filename=f"{i+1}", num_pages=1)
 """
+
+
+def translate_document_wait_until_done(
+        self, handle: DocumentHandle
+) -> DocumentStatus:
+    """
+    Continually polls the status of the document translation associated
+    with the given handle, sleeping in between requests, and returns the
+    final status when the translation completes (whether successful or
+    not).
+
+    :param handle: DocumentHandle to the document translation to wait on.
+    :return: DocumentStatus containing the status when completed.
+    """
+    status = self.translate_document_get_status(handle)
+    while status.ok and not status.done:
+        secs = 5.0  # seconds_remaining is currently unreliable, so just
+        # poll equidistantly
+        util.log_info(
+            f"Rechecking document translation status "
+            f"after sleeping for {secs:.3f} seconds."
+        )
+        time.sleep(secs)
+        status = self.translate_document_get_status(handle)
+    return status

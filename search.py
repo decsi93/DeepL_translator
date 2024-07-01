@@ -5,23 +5,29 @@ from platform import system
 from time import sleep
 
 
-def remove_trailing_semicolon(string_list):
+def search(search_keys: list):
     """
-        Removes a trailing semicolon (';') from a string if it exists.
+        Searches for PDF files in a specific directory based on a list of search keys.
 
         Args:
-            string_list: The string to check and potentially modify.
+            search_keys: A list of file names or keywords to search for.
 
         Returns:
-            The string with the trailing semicolon removed if it existed, otherwise the original string.
+            A list of full paths to matching PDF files.
     """
-    if string_list.endswith(';'):
-        return string_list[:-1]  # Slice the string to remove the last character
-    else:
-        return string_list
+    results = []
+    source_pdfs = [f for f in listdir("Raw\\") if f.endswith(".pdf")]  # Get only PDF files
+
+    for search_key in search_keys:
+        for file_name in source_pdfs:
+            if search_key in file_name:  # Check if search key is in the filename
+                full_path = path.join(getcwd() + "\\Raw\\", file_name)
+                results.append(full_path)
+
+    return results
 
 
-def pdfs(file_names):
+def file_type(file_names, file_extension):
     """
         Processes a list of file names, handling trailing semicolons, adding missing '.pdf' extensions,
         ensuring uniqueness, and sorting the final list.
@@ -43,7 +49,7 @@ def pdfs(file_names):
                 semicolon_counter += 1
 
     # Split on semicolons if there are multiple file names
-    if ";" in file_names:
+    if semicolon_counter > 0:
         file_names = file_names.split(";")
     else:
         # If no semicolons, convert the string to a list (assuming a single filename)
@@ -51,9 +57,9 @@ def pdfs(file_names):
 
     # Add '.pdf' extension if missing
     for file_name in file_names:
-        if not file_name.endswith(".pdf"):
+        if not file_name.endswith(file_extension):
             file_names.remove(file_name)
-            file_name = file_name + ".pdf"
+            file_name = file_name + file_extension
             file_names.append(file_name)
 
     # Convert to set to ensure uniqueness, then back to list and sort
@@ -63,42 +69,31 @@ def pdfs(file_names):
     return file_names
 
 
-def search(search_keys: list):
+def remove_trailing_semicolon(string_list):
     """
-        Searches for PDF files in a specific directory based on a list of search keys.
+        Removes a trailing semicolon (';') from a string if it exists.
 
         Args:
-            search_keys: A list of file names or keywords to search for.
+            string_list: The string to check and potentially modify.
 
         Returns:
-            A list of full paths to matching PDF files.
+            The string with the trailing semicolon removed if it existed, otherwise the original string.
     """
-    results = []
-    source_pdfs = [f for f in listdir("Raw\\") if f.endswith(".pdf")]  # Get only PDF files
-
-    for search_key in search_keys:
-        for file_name in source_pdfs:
-            if search_key in file_name:  # Check if search key is in the filename
-                full_path = path.join(getcwd() + "\\Raw\\", file_name)
-                found_in_done = search_key in listdir("Done\\")  # Check if exists in "Done\\"
-                results.append(found_in_done)  # Append tuple with path and flag
-                results.append(full_path)
-
-    return results
+    if string_list.endswith(';'):
+        return string_list[:-1]  # Slice the string to remove the last character
+    else:
+        return string_list
 
 
-def watermarking(pdf, watermark="watermark.png"):
-    file = pdf_open(path.join(getcwd() + "\\.In_progress\\" + pdf))  # open a document
+def watermarking(document, watermark="watermark.png"):
+    file = pdf_open(path.join(getcwd() + "\\.In_progress\\" + document))  # open a document
 
     for page_index in range(len(file)):  # iterate over pdf pages
         page = file[page_index]  # get the page
         # insert an image watermark from a file name to fit the page bounds
         page.insert_image(page.bound(), filename=watermark, overlay=True)
 
-    file.save(path.join(getcwd() + "\\Done\\" + pdf))  # save the document with a new filename
-    sleep(5)
-    finished = path.join(getcwd() + "\\.In_progress\\" + pdf)
-    remove_finished_temps(finished)
+    file.save(path.join(getcwd() + "\\Done\\" + document))  # save the document with a new filename
 
 
 def remove_finished_temps(file_path):

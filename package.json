@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "deepl-node": "^1.13.0"
+  }
+}
