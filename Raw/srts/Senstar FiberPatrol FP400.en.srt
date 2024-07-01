@@ -1,0 +1,90 @@
+﻿1
+00:00:02,760 --> 00:00:08,020
+The Senstar FiberPatrol FP400 is a fence-mounted
+fiber optic sensor
+
+2
+00:00:08,360 --> 00:00:10,239
+that detects perimeter intrusions.
+
+3
+00:00:10,440 --> 00:00:15,899
+With 4 separate detection zones, the FP400
+is an affordable solution for smaller sites
+
+4
+00:00:16,160 --> 00:00:21,009
+where EMI, lightning or in-field electrical
+components are a concern.
+
+5
+00:00:21,010 --> 00:00:26,060
+The lightweight fiber optic sensor cable is
+attached directly to the fence fabric.
+
+6
+00:00:26,060 --> 00:00:31,140
+Any attempt to cut, climb, or otherwise break
+through the fence disturbs the transmitted
+
+7
+00:00:31,140 --> 00:00:33,890
+signal and an alarm is generated.
+
+8
+00:00:33,890 --> 00:00:40,450
+The FP400 works on most fence types, including
+chainlink, welded mesh, and palisade.
+
+9
+00:00:40,450 --> 00:00:44,909
+The processor is outdoor-rated and can be
+installed in a variety of locations to meet
+
+10
+00:00:44,909 --> 00:00:46,690
+deployment requirements.
+
+11
+00:00:46,690 --> 00:00:52,079
+For example, it can be installed outside along
+the perimeter itself, or placed in a central
+
+12
+00:00:52,079 --> 00:00:57,839
+secure location and connect to the perimeter
+via non-sensing lead-in cable.
+
+13
+00:00:57,839 --> 00:01:03,069
+As part of Senstar’s family of perimeter
+protection solutions, the FP400 is easy to
+
+14
+00:01:03,069 --> 00:01:08,410
+set up and works with Senstar’s entire suite
+of software for configuration, integration,
+
+15
+00:01:08,410 --> 00:01:10,410
+and alarm display.
+
+16
+00:01:10,410 --> 00:01:15,330
+Field-proven integrations for industry-standard
+security and video management systems are
+
+17
+00:01:15,330 --> 00:01:18,539
+available, minimizing training requirements.
+
+18
+00:01:18,540 --> 00:01:23,430
+Designed by the world leader in perimeter
+intrusion detection systems, the FiberPatrol
+
+19
+00:01:23,430 --> 00:01:28,000
+FP400 is an affordable, effective way to protect
+smaller sites.
+

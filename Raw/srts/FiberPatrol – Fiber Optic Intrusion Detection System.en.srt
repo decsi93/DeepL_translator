@@ -1,0 +1,129 @@
+﻿1
+00:00:01,199 --> 00:00:07,579
+FiberPatrol, from Senstar, is a high-performance
+fiber optic perimeter intrusion detection
+
+2
+00:00:07,579 --> 00:00:09,259
+system.
+
+3
+00:00:09,259 --> 00:00:10,259
+ 
+
+4
+00:00:10,259 --> 00:00:15,059
+With its extended coverage distance and precision
+ranging, FiberPatrol is ideal for protecting
+
+5
+00:00:15,059 --> 00:00:17,360
+critical sites and infrastructure.
+
+6
+00:00:17,360 --> 00:00:23,770
+Software-defined zones with independent detection
+settings enable a single sensor cable to detect
+
+7
+00:00:23,770 --> 00:00:25,990
+activity across a mix of applications, including
+chainlink, welded mesh and pallisade fences,
+
+8
+00:00:25,990 --> 00:00:26,990
+wall tops, buried perimeter, buried pipeline
+interference, and data conduits. 
+
+9
+00:00:26,990 --> 00:00:28,820
+FiberPatrol locates intrusions to within a
+few meters.
+
+10
+00:00:28,820 --> 00:00:34,590
+Adaptive signal processing combined with experiential
+intelligence immediately detects and locates
+
+11
+00:00:34,590 --> 00:00:42,120
+intrusions, providing security staff with
+enhanced situational awareness and precise
+
+12
+00:00:42,120 --> 00:00:45,120
+camera pointing capabilities.
+
+13
+00:00:45,120 --> 00:00:51,629
+The fiber optic sensor is lightning and EMI
+immune, intrinsically safe in explosive environments,
+
+14
+00:00:51,630 --> 00:00:55,810
+and contains no in-infield electrical components.
+
+15
+00:00:55,810 --> 00:01:00,720
+FiberPatrol technology works by measuring
+the Rayleigh backscattering of highly coherent
+
+16
+00:01:00,720 --> 00:01:06,479
+laser light along the fiber, enabling the
+precise detection and locating of any disturbance.
+
+17
+00:01:06,479 --> 00:01:12,670
+In addition, the system offers cut-immunity,
+in which the full perimeter remains protected
+
+18
+00:01:12,670 --> 00:01:14,939
+in the event of a cable cut. 
+
+19
+00:01:14,939 --> 00:01:20,529
+Multi-layered signal processing, including
+environmental disaggregation alongside environmentally
+
+20
+00:01:20,530 --> 00:01:27,049
+derived adaptive processing technology (EDAPT),
+enables FiberPatrol to detect intrusion attempts
+
+21
+00:01:27,049 --> 00:01:32,560
+while filtering out noise from environmental
+conditions like wind or rain, virtually eliminating
+
+22
+00:01:32,560 --> 00:01:37,729
+nuisance alarms that may overload the ability
+of the security staff to respond.
+
+23
+00:01:37,729 --> 00:01:43,729
+The FiberPatrol sensor unit includes all necessary
+detection and gateway software, and supports
+
+24
+00:01:43,729 --> 00:01:47,340
+certified integrations with industry ~~leading~~-leading
+security software.
+
+25
+00:01:47,340 --> 00:01:55,990
+An open, freely available SDK ensures FiberPatrol
+can be easily added to any security system.
+
+26
+00:01:55,990 --> 00:02:02,020
+Part of a comprehensive portfolio of security
+products, FiberPatrol is backed by worldwide
+
+27
+00:02:02,020 --> 00:02:12,109
+technical support from a security company
+trusted for over 40 years.
+

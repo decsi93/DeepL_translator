@@ -1,0 +1,66 @@
+﻿1
+00:00:04,430 --> 00:00:09,739
+OmniTrax is a leading buried 
+cable intrusion detection sensor.
+
+2
+00:00:13,036 --> 00:00:15,035
+The best coverage is achieved when the  
+
+3
+00:00:15,035 --> 00:00:19,040
+transmitting and receiving cables 
+are buried one to two meters apart,  
+
+4
+00:00:19,040 --> 00:00:25,032
+creating an invisible radar-like detection 
+field of about three meters wide.
+
+5
+00:00:27,031 --> 00:00:31,400
+If an intruder disrupts the electromagnetic field  
+
+6
+00:00:31,400 --> 00:00:35,629
+it will cause an alarm with accurate 
+location to the nearest one meter.
+
+7
+00:00:38,627 --> 00:00:45,865
+A single OmniTrax processor covers two 
+segments, each of these up to 400 meters.
+
+8
+00:00:47,864 --> 00:00:50,870
+For longer perimeters processors can be networked.
+
+9
+00:00:50,870 --> 00:00:54,949
+The sensor cables can also provide power and data.
+
+10
+00:00:56,941 --> 00:01:01,940
+OmniTrax is completely covert and 
+therefore extremely difficult to defeat.
+
+11
+00:01:04,938 --> 00:01:10,776
+The detection accuracy enables precise 
+pointing of a camera to the suspected location.
+
+12
+00:01:26,750 --> 00:01:33,350
+OmniTrax is a terrain-following covert 
+sensor and extremely difficult to defeat.
+
+13
+00:01:33,979 --> 00:01:34,479
+With accurate locating, it is a high 
+security sensor, ideal for maintaining  
+
+14
+00:01:34,479 --> 00:01:47,263
+site aesthetics or as part of an integrated 
+perimeter intrusion detection system.
+

@@ -1,0 +1,100 @@
+﻿1
+00:00:00,030 --> 00:00:02,029
+ 
+
+2
+00:00:02,889 --> 00:00:08,009
+A fence around the perimeter of a secured site is only a minor deterrent for determined intruders.
+
+3
+00:00:08,320 --> 00:00:12,540
+The FlexZone fence sensor brings intrusion detection out to the perimeter,
+
+4
+00:00:12,880 --> 00:00:18,119
+protecting against trespassing vandalism and theft while helping to meet security requirements.
+
+5
+00:00:18,640 --> 00:00:21,720
+FlexZone is a fence-mounted perimeter intrusion detection system
+
+6
+00:00:22,090 --> 00:00:28,080
+that detects and locates attempts to cut climb or otherwise break through a perimeter fence.
+
+7
+00:00:28,810 --> 00:00:34,739
+FlexZone combines many of the most advanced security features into a single cost-effective solution.
+
+8
+00:00:35,200 --> 00:00:40,319
+Unlike less advanced solutions on the market, FlexZone uses software-defined zones.
+
+9
+00:00:40,989 --> 00:00:43,529
+Each processor supports up to 60 zones,
+
+10
+00:00:44,110 --> 00:00:48,179
+all independently adjustable and readily integrated with cameras for complete coverage.
+
+11
+00:00:48,730 --> 00:00:56,339
+FlexZone covers 2,000 feet or 600 meters per processor and locates intrusions within 10 feet or 3 meters,
+
+12
+00:00:57,219 --> 00:01:03,119
+industry-leading performance at a fraction of the cost. The system provides security staff with enhanced
+
+13
+00:01:03,430 --> 00:01:06,629
+situational awareness and precise camera pointing capabilities.
+
+14
+00:01:07,150 --> 00:01:10,199
+FlexZone uses adaptive algorithms to detect
+
+15
+00:01:10,540 --> 00:01:15,569
+simultaneous intrusion attempts while filtering out noise from environmental conditions like wind or rain,
+
+16
+00:01:16,210 --> 00:01:21,628
+virtually eliminating nuisance alarms that may overload the ability of the security staff to respond.
+
+17
+00:01:22,030 --> 00:01:27,960
+FlexZone can be installed on almost any fence type including chain-link welded mesh and palisade.
+
+18
+00:01:29,350 --> 00:01:33,600
+Installation is simple: with FlexZone a single cable carry sensor data,
+
+19
+00:01:33,790 --> 00:01:38,849
+networking and power and can be quickly installed on the fence by non specialized personnel.
+
+20
+00:01:39,549 --> 00:01:43,828
+Ruggedized for the outdoors, FlexZone works even in the most extreme weather conditions.
+
+21
+00:01:44,770 --> 00:01:51,929
+FlexZone is compatible with more than 20 third-party solutions and is easily added to any existing security system.
+
+22
+00:01:52,570 --> 00:02:00,000
+Part of a comprehensive portfolio of security products, FlexZone is backed by worldwide technical support
+
+23
+00:02:00,280 --> 00:02:02,280
+from a security company trusted for over 35 years.
+
+24
+00:02:03,100 --> 00:02:04,869
+Senstar --
+
+25
+00:02:04,869 --> 00:02:08,158
+Safeguarding people places and property
+

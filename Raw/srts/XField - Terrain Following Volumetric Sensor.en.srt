@@ -1,0 +1,32 @@
+﻿1
+00:00:10,870 --> 00:00:13,209
+xfield is the leading terrain-following
+
+2
+00:00:13,209 --> 00:00:16,789
+volumetric sensor it provides a very
+
+3
+00:00:16,789 --> 00:00:18,470
+contained vertical detection zone
+
+4
+00:00:18,470 --> 00:00:22,310
+created by an electrostatic field xfield
+
+5
+00:00:22,310 --> 00:00:24,500
+can provide detection coverage up to six
+
+6
+00:00:24,500 --> 00:00:27,289
+point one meters in height intrusion
+
+7
+00:00:27,289 --> 00:00:28,970
+attempts distort the electrostatic field
+
+8
+00:00:28,970 --> 00:00:32,229
+and trigger an alarm
+

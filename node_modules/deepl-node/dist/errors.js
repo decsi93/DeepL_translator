@@ -1,0 +1,43 @@
+"use strict";
+// Copyright 2022 DeepL SE (https://www.deepl.com)
+// Use of this source code is governed by an MIT
+// license that can be found in the LICENSE file.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DocumentNotReadyError = exports.GlossaryNotFoundError = exports.DocumentTranslationError = exports.ConnectionError = exports.TooManyRequestsError = exports.QuotaExceededError = exports.AuthorizationError = exports.DeepLError = void 0;
+class DeepLError extends Error {
+    constructor(message, error) {
+        super(message);
+        this.message = message;
+        this.error = error;
+    }
+}
+exports.DeepLError = DeepLError;
+class AuthorizationError extends DeepLError {
+}
+exports.AuthorizationError = AuthorizationError;
+class QuotaExceededError extends DeepLError {
+}
+exports.QuotaExceededError = QuotaExceededError;
+class TooManyRequestsError extends DeepLError {
+}
+exports.TooManyRequestsError = TooManyRequestsError;
+class ConnectionError extends DeepLError {
+    constructor(message, shouldRetry, error) {
+        super(message, error);
+        this.shouldRetry = shouldRetry || false;
+    }
+}
+exports.ConnectionError = ConnectionError;
+class DocumentTranslationError extends DeepLError {
+    constructor(message, handle, error) {
+        super(message, error);
+        this.documentHandle = handle;
+    }
+}
+exports.DocumentTranslationError = DocumentTranslationError;
+class GlossaryNotFoundError extends DeepLError {
+}
+exports.GlossaryNotFoundError = GlossaryNotFoundError;
+class DocumentNotReadyError extends DeepLError {
+}
+exports.DocumentNotReadyError = DocumentNotReadyError;

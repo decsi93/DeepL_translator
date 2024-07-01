@@ -1,0 +1,172 @@
+﻿1
+00:00:01,310 --> 00:00:04,500
+we are proud to present our newest state
+
+2
+00:00:04,500 --> 00:00:06,720
+of the art fiber sensor for long
+
+3
+00:00:06,720 --> 00:00:08,820
+perimeters with accurate intrusion
+
+4
+00:00:08,820 --> 00:00:14,070
+location a single processor with a
+
+5
+00:00:14,070 --> 00:00:16,379
+standard fiber cable can protect long
+
+6
+00:00:16,379 --> 00:00:18,810
+perimeters these could be different
+
+7
+00:00:18,810 --> 00:00:21,170
+types of physical barriers such as
+
+8
+00:00:21,170 --> 00:00:24,410
+welded mesh
+
+9
+00:00:24,800 --> 00:00:27,960
+Jean link fence
+
+10
+00:00:27,960 --> 00:00:31,250
+top walls
+
+11
+00:00:32,369 --> 00:00:37,890
+and buried pipelines the technology
+
+12
+00:00:37,890 --> 00:00:40,050
+leverages the phenomena that when light
+
+13
+00:00:40,050 --> 00:00:42,210
+travels in a fiber a fraction of the
+
+14
+00:00:42,210 --> 00:00:44,910
+photons scatter back to the source this
+
+15
+00:00:44,910 --> 00:00:46,500
+return carries valuable information
+
+16
+00:00:46,500 --> 00:00:49,769
+regarding intrusions the processor acts
+
+17
+00:00:49,769 --> 00:00:52,050
+like radar pulses of light are
+
+18
+00:00:52,050 --> 00:00:54,300
+transmitted and in between back
+
+19
+00:00:54,300 --> 00:00:55,979
+scattered energy is measured and
+
+20
+00:00:55,979 --> 00:00:58,440
+displayed correlated to the time of
+
+21
+00:00:58,440 --> 00:01:01,440
+travel when the fiber is static the
+
+22
+00:01:01,440 --> 00:01:04,920
+display shows no spikes an intrusion
+
+23
+00:01:04,920 --> 00:01:07,410
+would shake a section of the fiber and a
+
+24
+00:01:07,410 --> 00:01:09,539
+spike would show due to the change in
+
+25
+00:01:09,539 --> 00:01:11,399
+the nature of the back scattered energy
+
+26
+00:01:11,399 --> 00:01:14,130
+a redundant configuration with
+
+27
+00:01:14,130 --> 00:01:15,630
+Streamlight clockwise and
+
+28
+00:01:15,630 --> 00:01:19,020
+counterclockwise simultaneously enabling
+
+29
+00:01:19,020 --> 00:01:21,600
+full functionality even if the cable is
+
+30
+00:01:21,600 --> 00:01:24,899
+cut the extended range system for
+
+31
+00:01:24,899 --> 00:01:25,530
+pipelines
+
+32
+00:01:25,530 --> 00:01:27,479
+minimizes the number of infrastructure
+
+33
+00:01:27,479 --> 00:01:29,729
+locations where equipment needs to be
+
+34
+00:01:29,729 --> 00:01:35,159
+installed fiber Patrol delivers accurate
+
+35
+00:01:35,159 --> 00:01:38,369
+location of intruders detects multiple
+
+36
+00:01:38,369 --> 00:01:41,399
+simultaneous intrusions no need for
+
+37
+00:01:41,399 --> 00:01:44,640
+outdoor power or electronics EMI and
+
+38
+00:01:44,640 --> 00:01:47,789
+lightning immunity superb ease of
+
+39
+00:01:47,789 --> 00:01:50,940
+installation and self-healing in case of
+
+40
+00:01:50,940 --> 00:01:54,330
+a fiber cut fiber Patrol an innovative
+
+41
+00:01:54,330 --> 00:01:57,119
+security solution for airports borders
+
+42
+00:01:57,119 --> 00:02:00,209
+energy and utility and any other long
+
+43
+00:02:00,209 --> 00:02:04,220
+perimeter or pipeline application
+
