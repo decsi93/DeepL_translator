@@ -8,6 +8,7 @@ def file_type(file_name: str):
     watermarkable = [".docx", ".pptx", ".xlsx", ".pdf", ".html"]
     non_watermarkable = [".txt", ".srt", ".xlf", ".xliff"]
     flag = None
+    file_suffix = None
     for extension in watermarkable:
         if file_name.endswith(extension):
             flag = True
