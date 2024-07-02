@@ -1,22 +1,23 @@
 import tkinter as tk
+from tkinter import *
 from file_dialog import open_files
 from time import sleep
 from datetime import datetime
 from logging import basicConfig, getLogger, DEBUG
 from deepl import Translator, DocumentTranslationException, DeepLException
 from os import path, getcwd, listdir
-from search import watermarking, remove_finished_temps
+from watermarking import watermarking, remove_finished_temps, file_type
 from threading import Thread
 
 flag = False
 
 
-def screen_size(parameter):
+def screen_size(axis):
     """
         Gets the screen width or height using a hidden Tkinter window.
 
         Args:
-            parameter: "w" for width, "h" for height.
+            axis: "w" for width, "h" for height.
 
         Returns:
             The screen width or height as an integer.
@@ -24,12 +25,12 @@ def screen_size(parameter):
     root = tk.Tk()
     root.withdraw()
 
-    if parameter == "w":
+    if axis == "w":
         width = root.winfo_screenwidth()
         root.destroy()
         return width
 
-    elif parameter == "h":
+    elif axis == "h":
         height = root.winfo_screenheight()
         root.destroy()
         return height
@@ -50,6 +51,14 @@ translator = Translator("4ec2251b-bd81-4a7a-bcd4-cb9366d4e0bb:fx")
 # translator = Translator("")
 
 print(translator.get_usage())
+
+check_box = BooleanVar(window, True)
+
+
+def check_state():
+    global check_box
+
+    return check_box.get()
 
 
 def logger():
@@ -82,25 +91,30 @@ def translate():
                 sleep(1)
             if paths is not None:
                 print("Initiating")
+
                 for file_path in paths:
 
-                    # finished = path.join(getcwd() + "\\.In_progress\\HU_" + path.basename(file_path))
-                    finished = path.join(getcwd() + "\\Done\\HU_" + path.basename(file_path))
-                    sleep(1.5)
-                    print("Translating")
+                    if check_state():
+                        finished = path.join(getcwd() + "\\.In_progress\\HU_" + path.basename(file_path))
+                    elif not check_state():
+                        finished = path.join(getcwd() + "\\Done\\HU_" + path.basename(file_path))
+
+                    print("Translation has begun")
 
                     translator.translate_document_from_filepath(input_path=file_path, output_path=finished,
                                                                 target_lang="HU")
 
-                    print("Translate Complete\n")
+                    print("Translation Completed\n")
                     print(translator.get_usage())
 
-                """processing = listdir(".In_progress\\")
-                for item in processing:
-                    watermarking(item)
-"""
-                sleep(1)
-                # clear_temps()
+                if check_state():
+                    processing = listdir(".In_progress\\")
+                    for file in processing:
+                        file_type(file)
+                        watermarking(item)
+
+                    sleep(1)
+                    clear_temps()
 
                 print("\nFinished\n")
                 print(translator.get_usage())
@@ -142,10 +156,13 @@ def handle_errors(error, when):
         logs.close()
 
 
-# Input path section with labels and entry field
 tk.Label(window, text="Válaszd ki a fordítandó dokumentumokat", font=("ariel", 13)).pack()
+tk.Label(window, text="\nHa bevan pipálva akkor vízjelet tesz minden támogatott file típúsra", font=("ariel", 13)).pack()
 
+tk.Checkbutton(window, variable=check_box, command=check_state).pack()
 # Translate button
+
+
 tk.Button(window, text="Tallózás", font=("airel", 14), command=translate, height=screen_size("w")//350,
           width=screen_size("w")//200).pack()
 

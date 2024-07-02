@@ -5,7 +5,7 @@ from tkinter import filedialog as fd
 
 def open_files():
     # Specify the file types
-    filetypes = (('documents', '*.DOCX *.PPTX *.XLSX *.PDF *.HTML *.TXT *.STR'), ('All files', '*.*'))
+    filetypes = ('documents', '*.DOCX *.PPTX *.XLSX *.PDF *.HTML *.TXT *.STR')
     # Show the open file dialog allowing multiple file selection
     filenames = fd.askopenfilenames(filetypes=filetypes, initialdir="Raw\\")
     file_paths = []
