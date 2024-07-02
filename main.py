@@ -93,7 +93,7 @@ def translate():
                 print("Initiating")
 
                 for file_path in paths:
-
+                    finished = ""
                     if check_state():
                         finished = path.join(getcwd() + "\\.In_progress\\HU_" + path.basename(file_path))
                     elif not check_state():
@@ -161,7 +161,7 @@ def handle_errors(error, when):
 
 
 tk.Label(window, text="Válaszd ki a fordítandó dokumentumokat", font=("ariel", 13)).pack()
-tk.Label(window, text="\nHa bevan pipálva akkor vízjelet tesz minden támogatott file típúsra", font=("ariel", 13)).pack()
+tk.Label(window, text="\nHa bevan pipálva akkor vízjelet rak minden támogatott file típúsra", font=("ariel", 13)).pack()
 
 tk.Checkbutton(window, variable=check_box, command=check_state).pack()
 # Translate button
