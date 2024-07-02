@@ -22,7 +22,7 @@ def file_type(file_name: str):
                 file_suffix = extension
                 break
 
-    return file_suffix, flag
+    return [file_suffix, flag]
 
 
 def watermarking(document, extension, watermark="watermark.png"):

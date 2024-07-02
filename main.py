@@ -5,7 +5,7 @@ from time import sleep
 from datetime import datetime
 from logging import basicConfig, getLogger, DEBUG
 from deepl import Translator, DocumentTranslationException, DeepLException
-from os import path, getcwd, listdir
+from os import path, getcwd, listdir, replace
 from watermarking import watermarking, remove_finished_temps, file_type
 from threading import Thread
 
@@ -110,8 +110,12 @@ def translate():
                 if check_state():
                     processing = listdir(".In_progress\\")
                     for file in processing:
-                        file_type(file)
-                        watermarking(item)
+
+                        if file_type(file)[1]:
+                            watermarking(document=file, extension=file_type(file)[0])
+
+                        if file_type(file)[1]:
+                            replace(f".In_progress\\{file}", getcwd() + f"\\Done\\{file}")
 
                     sleep(1)
                     clear_temps()
