@@ -63,8 +63,8 @@ translator = Translator("4ec2251b-bd81-4a7a-bcd4-cb9366d4e0bb:fx")
 
 try:
     print(translator.get_usage())
-except:
-    tk.Label(window, text="Nem elérhetőek a DeepL szerverei").grid()
+except EXCEPTION:
+    tk.Label(window, text="Nem elérhetőek a DeepL szerverei").pack()
 
 check_box = BooleanVar(window, True)
 
@@ -174,12 +174,11 @@ def handle_errors(error, when):
         logs.close()
 
 
-tk.Label(window, text="Válaszd ki a fordítandó dokumentumokat", font=("ariel", 13)).grid()
-(tk.Label(window, text="\nHa bevan pipálva akkor vízjelet rak minden támogatott file típúsra", font=("ariel", 13), )
- .grid(row=4))
+tk.Label(window, text="Válaszd ki a fordítandó dokumentumokat", font=("ariel", 13)).pack()
+tk.Label(window, text="\nHa bevan pipálva akkor vízjelet rak minden támogatott file típúsra", font=("ariel", 13)).pack()
 
 
-tk.Checkbutton(window, variable=check_box, command=check_state).grid(row=5)
+tk.Checkbutton(window, variable=check_box, command=check_state).pack()
 
 
 def selected_files():
@@ -187,25 +186,25 @@ def selected_files():
 
 
 # file dialog
-tk.Button(window, text="Tallózás", font=("airel", 14), command=selected_files, height=screen_size()[0]//350,
-          width=screen_size()[0]//200).grid()
+tk.Button(window, text="Tallózás", font=("airel", 10), command=selected_files, height=screen_size()[1]//350,
+          width=screen_size()[0]//350).pack()
 
 # Translate button
-tk.Button(window, text="Fordítás", font=("airel", 14), command=translate, height=screen_size()[0]//350,
-          width=screen_size()[0]//200).grid()
+tk.Button(window, text="Fordítás", font=("airel", 10), command=translate, height=screen_size()[1]//350,
+          width=screen_size()[0]//350).pack()
 
 """tk.Button(window, text="törlés", font=("airel", 14),
           command=clear_temps, height=screen_size("w")//175,
-          width=screen_size("w")//100).grid()
+          width=screen_size("w")//100).pack()
 """
 
 # Error display (after)
 after_var = tk.StringVar()
-tk.Label(window, textvariable=after_var).grid()
+tk.Label(window, textvariable=after_var).pack()
 
 # Error display (during)
 during_var = tk.StringVar()
-tk.Label(window, textvariable=during_var).grid()
+tk.Label(window, textvariable=during_var).pack()
 
 """
 class MockDocumentStatus:
@@ -243,7 +242,7 @@ def update_status():
 
 doc_status = tk.StringVar()
 doc_label = tk.Label(window, text="")
-doc_label.grid()
+doc_label.pack()
 """
 
 # Run the main event loop
