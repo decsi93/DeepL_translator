@@ -8,40 +8,51 @@ from deepl import Translator, DocumentTranslationException, DeepLException
 from os import path, getcwd, listdir, replace
 from watermarking import watermarking, remove_finished_temps, file_type
 from threading import Thread
+from platform import system
 
 flag = False
 
 
-def screen_size(axis):
+def screen_size():
     """
-        Gets the screen width or height using a hidden Tkinter window.
-
-        Args:
-            axis: "w" for width, "h" for height.
+        Gets the screen width and height using a tool from win32api.
 
         Returns:
-            The screen width or height as an integer.
+            The screen width and height in a list.
     """
-    root = tk.Tk()
-    root.withdraw()
 
-    if axis == "w":
-        width = root.winfo_screenwidth()
-        root.destroy()
-        return width
+    if system() == "Windows":
+        import ctypes
 
-    elif axis == "h":
-        height = root.winfo_screenheight()
-        root.destroy()
-        return height
+        user32 = ctypes.windll.user32
+        user32.SetProcessDPIAware()
 
-    root.destroy()
+        return [user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)]
+
+    elif system() == "MacOS":
+        import Quartz
+
+        main_display = Quartz.CGMainDisplayID()
+
+        return [Quartz.CGDisplayPixelsWide(main_display), Quartz.CGDisplayPixelsHigh(main_display)]
+
+    elif system() == "Linux":
+        import subprocess
+
+        output = subprocess.check_output("xrandr | grep '*' | awk '{print $1}'", shell=True)
+        resolution = output.decode().strip().split('x')
+
+        return [int(resolution[0]), int(resolution[1])]
+
+    else:
+        return [1920, 1080]
 
 
+print(screen_size())
 # Create main window
 window = tk.Tk()
 window.title("DeepL Translator")
-window.geometry(f"{screen_size("w")//2}x{screen_size("h")//4}")  # Use integer division for window size
+window.geometry(f"{screen_size()[0]//2}x{screen_size()[1]//4}")  # Use integer division for window size
 
 
 # Initialize translator
@@ -50,7 +61,10 @@ translator = Translator("4ec2251b-bd81-4a7a-bcd4-cb9366d4e0bb:fx")
 # translator = Translator("3ef91913-d4dc-44d7-a09c-e3e38b434d6c:fx") maxed out 2024.07.01
 # translator = Translator("")
 
-print(translator.get_usage())
+try:
+    print(translator.get_usage())
+except:
+    tk.Label(window, text="Nem elérhetőek a DeepL szerverei").grid()
 
 check_box = BooleanVar(window, True)
 
@@ -160,29 +174,38 @@ def handle_errors(error, when):
         logs.close()
 
 
-tk.Label(window, text="Válaszd ki a fordítandó dokumentumokat", font=("ariel", 13)).pack()
-tk.Label(window, text="\nHa bevan pipálva akkor vízjelet rak minden támogatott file típúsra", font=("ariel", 13)).pack()
+tk.Label(window, text="Válaszd ki a fordítandó dokumentumokat", font=("ariel", 13)).grid()
+(tk.Label(window, text="\nHa bevan pipálva akkor vízjelet rak minden támogatott file típúsra", font=("ariel", 13), )
+ .grid(row=4))
 
-tk.Checkbutton(window, variable=check_box, command=check_state).pack()
+
+tk.Checkbutton(window, variable=check_box, command=check_state).grid(row=5)
+
+
+def selected_files():
+    pass
+
+
+# file dialog
+tk.Button(window, text="Tallózás", font=("airel", 14), command=selected_files, height=screen_size()[0]//350,
+          width=screen_size()[0]//200).grid()
+
 # Translate button
-
-
-tk.Button(window, text="Tallózás", font=("airel", 14), command=translate, height=screen_size("w")//350,
-          width=screen_size("w")//200).pack()
-
+tk.Button(window, text="Fordítás", font=("airel", 14), command=translate, height=screen_size()[0]//350,
+          width=screen_size()[0]//200).grid()
 
 """tk.Button(window, text="törlés", font=("airel", 14),
           command=clear_temps, height=screen_size("w")//175,
-          width=screen_size("w")//100).pack()
+          width=screen_size("w")//100).grid()
 """
 
 # Error display (after)
 after_var = tk.StringVar()
-tk.Label(window, textvariable=after_var).pack()
+tk.Label(window, textvariable=after_var).grid()
 
 # Error display (during)
 during_var = tk.StringVar()
-tk.Label(window, textvariable=during_var).pack()
+tk.Label(window, textvariable=during_var).grid()
 
 """
 class MockDocumentStatus:
@@ -220,7 +243,7 @@ def update_status():
 
 doc_status = tk.StringVar()
 doc_label = tk.Label(window, text="")
-doc_label.pack()
+doc_label.grid()
 """
 
 # Run the main event loop
