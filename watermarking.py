@@ -22,6 +22,9 @@ def file_type(file_name: str):
                 file_suffix = extension
                 break
 
+    """if flag is None:
+        flag = False
+        file_suffix = extension"""
     return [file_suffix, flag]
 
 
