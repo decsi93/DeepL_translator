@@ -15,10 +15,8 @@ flag = False
 
 
 # Initialize translator
-translator = Translator("4ec2251b-bd81-4a7a-bcd4-cb9366d4e0bb:fx")
-# translator = Translator("47a52ad7-61c7-4ed0-826f-6cb857f05e07:fx") maxed out 2024.07.01
-# translator = Translator("3ef91913-d4dc-44d7-a09c-e3e38b434d6c:fx") maxed out 2024.07.01
-# translator = Translator("")
+# translator = Translator(API_key_string)
+
 
 try:
     print(translator.get_usage())
